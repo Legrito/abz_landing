@@ -1,0 +1,18 @@
+@import '../styles/variables'
+
+.button
+  padding: 0 10px
+  border-radius: 8rem
+  display: flex
+  align-items: center
+  justify-content: center
+  color: $text
+  background-color: $button
+  cursor: pointer
+
+  &:disabled
+    background-color: $button-disabled
+    color: $white
+
+  &:hover, &:focus
+    background-color: $button-hover
