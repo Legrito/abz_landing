@@ -1,10 +1,12 @@
+import logo from "../assets/logo.svg";
+
 import styles from "./Header.module.sass";
 
 const Header = () => (
   <header>
     <div className={styles.notch}></div>
     <div className={styles.container}>
-      <img></img>
+      <img src={logo} className={styles.logo} />
       <nav className="actions">
         <ul>
           <li>
