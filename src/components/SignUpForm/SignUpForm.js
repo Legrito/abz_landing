@@ -3,10 +3,8 @@ import Button from "../Shared/Button";
 import InputText from "./InputText";
 import styles from "./SignUpForm.module.sass";
 import Positions from "./Positions";
-import InputRadio from "./InputRadio";
-import Fieldset from "../Shared/Fieldset";
 import InputFile from "./InputFile";
-// import { validatevalueData } from "./helpers";
+import { validateImageSize } from "./helpers";
 
 const EmailRegex =
   /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
@@ -16,12 +14,24 @@ const SignUpForm = () => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [position, setPosition] = useState("Lawyer");
-  const [file, setFile] = useState();
+  const [file, setFile] = useState("");
 
   const handleFileChange = e => {
-    if (e.target.files) {
-      setFile(e.target.files[0]);
+    const value = e.target.files[0];
+    const imgRegex = /^image\/(jpeg|jpg)$/;
+
+    if (!imgRegex.test(value.type)) {
+      return setFile({ value, error: "Error message" });
     }
+    if (value.size > 5000000) {
+      return setFile({ value, error: "Error message" });
+    }
+    validateImageSize(value)
+      .then(() => setFile({ value, error: "" }))
+      .catch(error => {
+        console.log(error);
+        setFile({ value, error });
+      });
   };
 
   const handlePositionChange = e => {
@@ -74,6 +84,7 @@ const SignUpForm = () => {
   const handleSubmit = e => {
     e.preventDefault();
   };
+
   return (
     <form className={styles.form}>
       <InputText
@@ -101,7 +112,11 @@ const SignUpForm = () => {
         onBlur={handleValidatePhone}
       />
       <Positions positionCurrent={position} onChange={handlePositionChange} />
-      <InputFile onChange={handleFileChange} file={file} />
+      <InputFile
+        onChange={handleFileChange}
+        error={file.error}
+        file={file.value}
+      />
       <Button type="submit" onClick={handleSubmit}>
         Sign Up
       </Button>

@@ -3,6 +3,7 @@
 .wrap
   width: 100%
   max-width: 380px
+  position: relative
 
 .input
   display: none
@@ -34,6 +35,18 @@
     border-top-left-radius: 4px
     border-bottom-left-radius: 4px
 
-.input#file-upload-button
-  border: none
-  border-left: 1px solid #000
+  &.with-error
+    border: 2px solid $error
+
+    &::before
+      border: 2px solid $error
+      left: -2px
+      top: -2px
+
+.error
+  color: $error
+  font-size: 1.2rem
+  line-height: 1.167
+  position: absolute
+  left: 16px
+  top: calc( 100% + 4px )
