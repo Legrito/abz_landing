@@ -1,0 +1,39 @@
+@import '../../styles/variables'
+
+.wrap
+  width: 100%
+  max-width: 380px
+
+.input
+  display: none
+
+.upload
+  display: flex
+  align-items: center
+  padding-left: 99px
+  height: 54px
+  border: 1px solid #D0CFCF
+  border-radius: 4px
+  color: $label
+  width: 100%
+  position: relative
+
+  &::before
+    display: flex
+    align-items: center
+    justify-content: center
+    position: absolute
+    content: 'Upload'
+    color: $text
+    padding: 0 15px
+    width: 54px
+    height: 100%
+    left: -1px
+    top: -1px
+    border: 1px solid $text
+    border-top-left-radius: 4px
+    border-bottom-left-radius: 4px
+
+.input#file-upload-button
+  border: none
+  border-left: 1px solid #000

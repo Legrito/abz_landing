@@ -2,6 +2,10 @@ import { useState } from "react";
 import Button from "../Shared/Button";
 import InputText from "./InputText";
 import styles from "./SignUpForm.module.sass";
+import Positions from "./Positions";
+import InputRadio from "./InputRadio";
+import Fieldset from "../Shared/Fieldset";
+import InputFile from "./InputFile";
 // import { validatevalueData } from "./helpers";
 
 const EmailRegex =
@@ -11,6 +15,18 @@ const SignUpForm = () => {
   const [name, setName] = useState({ value: "", error: "" });
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [position, setPosition] = useState("Lawyer");
+  const [file, setFile] = useState();
+
+  const handleFileChange = e => {
+    if (e.target.files) {
+      setFile(e.target.files[0]);
+    }
+  };
+
+  const handlePositionChange = e => {
+    setPosition(e.target.id);
+  };
 
   const handleChangeTextInput = e => {
     const value = String(e.target.value).trim();
@@ -28,7 +44,8 @@ const SignUpForm = () => {
   };
 
   const handleValidateName = e => {
-    const value = String(e.target.value).trim();
+    const value = e.target.value;
+
     if (!value || value.length < 2 || value.length > 60) {
       return setName({ value, error: "Error message" });
     }
@@ -36,7 +53,8 @@ const SignUpForm = () => {
   };
 
   const handleValidateEmail = e => {
-    const value = String(e.target.value).trim();
+    const value = e.target.value;
+
     if (!value || !EmailRegex.test(value)) {
       return setEmail({ value, error: "Error message" });
     }
@@ -44,8 +62,9 @@ const SignUpForm = () => {
   };
 
   const handleValidatePhone = e => {
-    const value = String(e.target.value).trim();
+    const value = e.target.value;
     const phoneRegex = /^(\+380)[0-9]{9}$/;
+
     if (!value || !phoneRegex.test(value)) {
       return setPhone({ value, error: "Error message" });
     }
@@ -81,6 +100,8 @@ const SignUpForm = () => {
         placeholder="Phone"
         onBlur={handleValidatePhone}
       />
+      <Positions positionCurrent={position} onChange={handlePositionChange} />
+      <InputFile onChange={handleFileChange} file={file} />
       <Button type="submit" onClick={handleSubmit}>
         Sign Up
       </Button>

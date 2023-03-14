@@ -20,7 +20,7 @@ const InputText = ({ value, type, error, placeholder, onChange, onBlur }) => {
 };
 
 InputText.propTypes = {
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
   type: PropTypes.string.isRequired,
   error: PropTypes.string,
   placeholder: PropTypes.string.isRequired,
