@@ -1,0 +1,36 @@
+@import '../../styles/variables'
+
+.label
+  position: relative
+  width: 100%
+  display: flex
+  flex-direction: column
+  align-items: center
+
+.input
+  padding: 0 16px
+  height: 54px
+  display: flex
+  align-items: center
+  font-size: 1.6rem
+  border: 1px solid $light-gray-border
+  border-radius: 0.4rem
+  position: relative
+  width: 100%
+  max-width: 380px
+
+  &::placeholder
+    font-weight: 400
+    font-size: 1.6rem
+    color: $label
+
+  &.input--with-error
+    border-color: $error
+
+.error
+  color: $error
+  font-size: 1.2rem
+  line-height: 1.167
+  position: absolute
+  left: 16px
+  top: calc( 100% + 4px )
