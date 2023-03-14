@@ -10,7 +10,7 @@ const EmailRegex =
   /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
 
 const SignUpForm = () => {
-  const [name, setName] = useState({ value: "", error: "" });
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [position, setPosition] = useState("Lawyer");
@@ -117,7 +117,19 @@ const SignUpForm = () => {
         error={file.error}
         file={file.value}
       />
-      <Button type="submit" onClick={handleSubmit}>
+      <Button
+        type="submit"
+        onClick={handleSubmit}
+        isDisabled={
+          name.error ||
+          email.error ||
+          phone.error ||
+          file.error ||
+          !name ||
+          !email ||
+          !phone
+        }
+      >
         Sign Up
       </Button>
     </form>
