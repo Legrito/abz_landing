@@ -6,7 +6,7 @@ import styles from "./Header.module.sass";
 const Header = () => (
   <header>
     <div className={styles.notch}></div>
-    <div className={styles.container}>
+    <div className={`${styles.container} header__container`}>
       <img src={logo} className={styles.logo} alt="CompanyName Logo" />
       <nav className="actions">
         <ul className={styles.list}>

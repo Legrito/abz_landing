@@ -1,13 +1,16 @@
 import Header from "./components/Header";
 import Hero from "./components/Hero";
+import Main from "./components/Shared/Main";
 
 import "./App.sass";
 
 function App() {
   return (
-    <div className="App">
+    <div className="wrapper">
       <Header />
-      <Hero />
+      <Main>
+        <Hero />
+      </Main>
     </div>
   );
 }
