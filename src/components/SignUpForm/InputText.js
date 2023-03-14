@@ -1,8 +1,9 @@
+import PropTypes from "prop-types";
 import styles from "./InputText.module.sass";
 
-const InputText = ({ value, type, error, placeholder, onChange }) => {
+const InputText = ({ value, type, error, placeholder, onChange, onBlur }) => {
   return (
-    <label className={styles.label}>
+    <div className={styles.wrap}>
       <input
         className={`${styles.input} ${
           error ? styles["input--with-error"] : ""
@@ -11,10 +12,19 @@ const InputText = ({ value, type, error, placeholder, onChange }) => {
         placeholder={placeholder}
         value={value}
         onChange={onChange}
+        onBlur={onBlur}
       />
       {error && <span className={styles.error}>{error}</span>}
-    </label>
+    </div>
   );
+};
+
+InputText.propTypes = {
+  value: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  error: PropTypes.string,
+  placeholder: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default InputText;
