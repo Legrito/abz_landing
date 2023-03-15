@@ -14,7 +14,9 @@ const UserCard = ({ name, photo, email, id, phone, position }) => {
           <a href={`mailto:${email}`} className="ellipsis">
             {email}
           </a>
-          <a href={`tel:${phone}`}>{phone}</a>
+          <a href={`tel:${phone}`} title={phone}>
+            {phone}
+          </a>
         </address>
       </div>
     </article>
