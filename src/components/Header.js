@@ -7,7 +7,12 @@ const Header = () => (
   <header>
     <div className={styles.notch}></div>
     <div className={`${styles.container} header__container`}>
-      <img src={logo} className={styles.logo} alt="CompanyName Logo" />
+      <img
+        src={logo}
+        className={styles.logo}
+        alt="CompanyName Logo"
+        loading="lazy"
+      />
       <nav className="actions">
         <ul className={styles.list}>
           <li>

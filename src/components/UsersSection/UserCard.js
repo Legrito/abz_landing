@@ -6,7 +6,7 @@ const UserCard = ({ name, photo, email, id, phone, position }) => {
   return (
     <article className={styles.card} id={id}>
       <div className={styles.thumb}>
-        <img src={photo ?? avatar} alt={name} />
+        <img src={photo ?? avatar} alt={name} loading="lazy" />
       </div>
       <p className={`ellipsis ${styles.name}`}>{name}</p>
       <div className={styles.contacts}>
