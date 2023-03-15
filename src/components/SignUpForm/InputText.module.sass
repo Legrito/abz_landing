@@ -19,6 +19,12 @@
   border-radius: 0.4rem
   position: relative
   width: 100%
+  background-color: $background !important
+
+  &:focus-visible,
+  &:focus
+    border: 1px solid $secondary
+    outline: none
 
   &::placeholder
     font-weight: 400
