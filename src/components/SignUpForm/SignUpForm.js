@@ -6,6 +6,7 @@ import Positions from "./Positions";
 import InputFile from "./InputFile";
 import { registerUser, getUsers } from "../../apiMethods/helpers";
 import { validateImageSize } from "./helpers";
+import Loader from "../Shared/Loader";
 
 const EmailRegex =
   /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
@@ -41,7 +42,7 @@ const SignUpForm = () => {
   };
 
   const handleChangeTextInput = e => {
-    const value = String(e.target.value).trim();
+    const value = e.target.value;
 
     switch (e.target.type) {
       case "text":
@@ -56,7 +57,7 @@ const SignUpForm = () => {
   };
 
   const handleValidateName = e => {
-    const value = e.target.value;
+    const value = String(e.target.value).trim();
 
     if (!value || value.length < 2 || value.length > 60) {
       return setName({ value, error: "Error message" });
@@ -65,7 +66,7 @@ const SignUpForm = () => {
   };
 
   const handleValidateEmail = e => {
-    const value = e.target.value;
+    const value = String(e.target.value).trim();
 
     if (!value || !EmailRegex.test(value)) {
       return setEmail({ value, error: "Error message" });
@@ -74,7 +75,7 @@ const SignUpForm = () => {
   };
 
   const handleValidatePhone = e => {
-    const value = e.target.value;
+    const value = String(e.target.value).trim();
     const phoneRegex = /^(\+380)[0-9]{9}$/;
 
     if (!value || !phoneRegex.test(value)) {
@@ -85,13 +86,27 @@ const SignUpForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    setIloading(true);
 
     const formData = new FormData();
-    formData.append("name", name.value);
-    formData.append("email", email.value);
-    formData.append("phone", phone.value);
-    formData.append("position_id", position.id);
-    formData.append("photo", file);
+    // formData.append("name", name.value);
+    // formData.append("email", email.value);
+    // formData.append("phone", phone.value);
+    // formData.append("position_id", position.id);
+    // formData.append("photo", file);
+    formData.append("name", "Alex BBB");
+    formData.append("email", "fff@dfrg.com");
+    formData.append("phone", "+380976645573");
+    formData.append("position_id", "2");
+    formData.append(
+      "photo",
+      "https://frontend-test-assignment-api.abz.agency/images/users/6410a11e9035c12469.jpg"
+    );
+
+    registerUser(formData)
+      .then(data => console.log(data))
+      .catch(error => console.log(error.message))
+      .finally(() => setIloading(false));
   };
 
   return (

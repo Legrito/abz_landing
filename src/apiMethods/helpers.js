@@ -20,6 +20,7 @@ export const getToken = async () => {
 
 export const registerUser = async formData => {
   const { token } = await getToken();
+  console.log(token);
 
   const response = await axios.post(`${BASE_URL}/users`, formData, {
     headers: {
