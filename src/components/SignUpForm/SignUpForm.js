@@ -105,6 +105,8 @@ const SignUpForm = () => {
   return (
     <form className={styles.form}>
       <InputText
+        id="name_input"
+        label="Label"
         type="text"
         value={name.value}
         onChange={handleChangeTextInput}
@@ -113,6 +115,8 @@ const SignUpForm = () => {
         onBlur={handleValidateName}
       />
       <InputText
+        id="email_input"
+        label="Label"
         type="email"
         value={email.value}
         onChange={handleChangeTextInput}
@@ -121,6 +125,8 @@ const SignUpForm = () => {
         onBlur={handleValidateEmail}
       />
       <InputText
+        id="phone_input"
+        label="Label"
         type="tel"
         value={phone.value}
         onChange={handleChangeTextInput}

@@ -8,6 +8,16 @@
   align-items: center
   width: 100%
 
+.label
+  font-size: 1.2rem
+  line-height: 1.167
+  color: $label
+  padding: 0 4px
+  background-color: $background
+  position: absolute
+  top: -6px
+  left: 16px
+
 .input
   padding: 0 16px
   height: 54px
@@ -21,6 +31,18 @@
   width: 100%
   background-color: $background !important
 
+  &:-internal-autofill-previewed,
+  &:-internal-autofill-selected
+    background: $background
+
+  &:-webkit-autofill
+    transition: background-color 5000s ease-in-out 0s
+
+    &:hover,
+    &:focus,
+    &:active
+      transition: background-color 5000s ease-in-out 0s
+
   &:focus-visible,
   &:focus
     border: 1px solid $secondary
@@ -33,6 +55,9 @@
 
   &.input--with-error
     border-color: $error
+
+    & + .label
+      color: $error
 
 .error
   color: $error
