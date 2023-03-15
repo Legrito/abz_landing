@@ -12,7 +12,9 @@ const InputFile = ({ file, error, onChange, onBlur }) => {
         htmlFor="file-upload"
         className={`${styles.upload} ${error ? styles["with-error"] : ""}`}
       >
-        {file ? file.name : "Upload your photo"}
+        <span className="ellipsis">
+          {file ? file.name : "Upload your photo"}
+        </span>
       </label>
       <input
         id="file-upload"

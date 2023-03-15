@@ -4,7 +4,7 @@ import styles from "./SuccessSection.module.sass";
 
 const SuccessSection = () => {
   return (
-    <Section title="User successfully registered">
+    <Section className="active" title="User successfully registered">
       <div className={`${styles.container} success__container`}>
         <img src={picture} alt="User Registered" width="328" height="290" />
       </div>

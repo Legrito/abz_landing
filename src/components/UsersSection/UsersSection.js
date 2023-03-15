@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getUsers } from "../../apiMethods/helpers";
 import Button from "../Shared/Button";
 import UserCard from "./UserCard";
 import Section from "../Shared/Section";
 import styles from "./UsersSection.module.sass";
 import Loader from "../Shared/Loader";
+import { AppContext } from "../../App";
 
 const UsersSection = () => {
+  const { isRegistered } = useContext(AppContext);
   const [users, setUsers] = useState([]);
   const [error, setError] = useState("");
   const [page, setPage] = useState(1);
@@ -23,6 +25,20 @@ const UsersSection = () => {
       .catch(error => setError(error.message))
       .finally(() => setIsLoading(false));
   }, []);
+
+  useEffect(() => {
+    setIsLoading(true);
+    getUsers("1")
+      .then(data => {
+        setHasNextPage(!!data.links.next_url);
+        setUsers(data.users);
+      })
+      .catch(error => setError(error.message))
+      .finally(() => {
+        setIsLoading(false);
+        setPage(1);
+      });
+  }, [isRegistered]);
 
   const handleClick = () => {
     setIsLoading(true);
@@ -50,6 +66,7 @@ const UsersSection = () => {
               id={user.id}
               phone={user.phone}
               position={user.position}
+              photo={user.photo}
             />
           </li>
         ))}

@@ -9,7 +9,7 @@ import SuccessSection from "./components/SuccessSection";
 
 import "./App.sass";
 
-const AppContext = createContext();
+export const AppContext = createContext();
 
 function App() {
   const [isRegistered, setIsRegistered] = useState(false);
