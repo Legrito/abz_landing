@@ -72,7 +72,7 @@ const UsersSection = () => {
         ))}
       </ul>
       {isLoading && <Loader />}
-      {users.length > 0 && (
+      {users.length > 0 && hasNextPage && (
         <Button isDisabled={!hasNextPage} onClick={handleClick}>
           Show More
         </Button>

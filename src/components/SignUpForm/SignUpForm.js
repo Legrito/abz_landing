@@ -7,24 +7,22 @@ import InputFile from "./InputFile";
 import { registerUser } from "../../apiMethods/helpers";
 import { validateImageSize } from "./helpers";
 import { AppContext } from "../../App";
-
-const EmailRegex =
-  /^(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/;
+import { EMAIL__REGEX, PHOTO_REGEX, PHONE_REGEX } from "../../constants";
 
 const SignUpForm = () => {
   const { handleRegistered } = useContext(AppContext);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
+  const [name, setName] = useState({ value: "", error: "" });
+  const [email, setEmail] = useState({ value: "", error: "" });
+  const [phone, setPhone] = useState({ value: "", error: "" });
   const [position, setPosition] = useState({ id: 1, name: "Lawyer" });
-  const [file, setFile] = useState("");
+  const [file, setFile] = useState({ value: "", error: "" });
   const [isLoading, setIloading] = useState(false);
 
   const handleFileChange = e => {
     const value = e.target.files[0];
-    const imgRegex = /^image\/(jpeg|jpg)$/;
+    console.log(value.type);
 
-    if (!imgRegex.test(value.type)) {
+    if (!PHOTO_REGEX.test(value.type)) {
       return setFile({ value, error: "Error message" });
     }
     if (value.size > 5000000) {
@@ -69,7 +67,7 @@ const SignUpForm = () => {
   const handleValidateEmail = e => {
     const value = String(e.target.value).trim();
 
-    if (!value || !EmailRegex.test(value)) {
+    if (!value || !EMAIL__REGEX.test(value)) {
       return setEmail({ value, error: "Error message" });
     }
     return setEmail({ value, error: "" });
@@ -77,9 +75,8 @@ const SignUpForm = () => {
 
   const handleValidatePhone = e => {
     const value = String(e.target.value).trim();
-    const phoneRegex = /^[\+]{0,1}380([0-9]{9})$/;
 
-    if (!value || !phoneRegex.test(value)) {
+    if (!value || !PHONE_REGEX.test(value)) {
       return setPhone({ value, error: "Error message" });
     }
     return setPhone({ value, error: "" });
@@ -88,11 +85,6 @@ const SignUpForm = () => {
   const handleSubmit = e => {
     e.preventDefault();
     setIloading(true);
-
-    let fileField = document.querySelector('input[type="file"]');
-
-    console.log(fileField.files[0]);
-    console.log(file.value);
 
     const formData = new FormData();
     formData.append("name", name.value);
@@ -151,9 +143,10 @@ const SignUpForm = () => {
           email.error ||
           phone.error ||
           file.error ||
-          !name ||
-          !email ||
-          !phone
+          !name.value ||
+          !email.value ||
+          !phone.value ||
+          !file.value
         }
       >
         {isLoading ? "Loading..." : "Sign Up"}

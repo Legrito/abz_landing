@@ -1,4 +1,4 @@
-import avatar from "../../assets/photo-cover.svg";
+import avatar from "../../assets/photo-cover.jpg";
 import styles from "./UserCard.module.sass";
 
 const UserCard = ({ name, photo, email, id, phone, position }) => {
