@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import InputRadio from "./InputRadio";
 import Fieldset from "../Shared/Fieldset";
 import { getPositions } from "../../apiMethods/helpers";
@@ -31,6 +32,14 @@ const Positions = ({ positionCurrent, onChange }) => {
       })}
     </Fieldset>
   );
+};
+
+Positions.prototype = {
+  positionCurrent: PropTypes.shape({
+    name: PropTypes.string,
+    id: PropTypes.string,
+  }).isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default Positions;

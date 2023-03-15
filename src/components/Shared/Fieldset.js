@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import styles from "./Fieldset.module.sass";
 
 const Fieldset = ({ title, children }) => {
@@ -7,6 +8,10 @@ const Fieldset = ({ title, children }) => {
       {children}
     </fieldset>
   );
+};
+
+Fieldset.prototype = {
+  title: PropTypes.string,
 };
 
 export default Fieldset;

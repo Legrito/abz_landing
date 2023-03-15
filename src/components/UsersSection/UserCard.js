@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import avatar from "../../assets/photo-cover.jpg";
 import styles from "./UserCard.module.sass";
 
@@ -21,6 +22,15 @@ const UserCard = ({ name, photo, email, id, phone, position }) => {
       </div>
     </article>
   );
+};
+
+UserCard.prototype = {
+  name: PropTypes.string.isRequired,
+  photo: PropTypes.string,
+  email: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  phone: PropTypes.string.isRequired,
+  position: PropTypes.string.isRequired,
 };
 
 export default UserCard;

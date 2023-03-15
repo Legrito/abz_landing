@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import styles from "./Section.module.sass";
 
 const Section = ({ id, title, children, className }) => {
@@ -11,6 +12,12 @@ const Section = ({ id, title, children, className }) => {
       </div>
     </section>
   );
+};
+
+Section.prototype = {
+  id: PropTypes.string,
+  title: PropTypes.string,
+  className: PropTypes.string,
 };
 
 export default Section;

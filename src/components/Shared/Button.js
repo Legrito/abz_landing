@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import styles from "./Button.module.sass";
 
 const Button = ({ path, type = "button", onClick, isDisabled, children }) =>
@@ -17,3 +18,10 @@ const Button = ({ path, type = "button", onClick, isDisabled, children }) =>
   );
 
 export default Button;
+
+Button.prototype = {
+  path: PropTypes.string,
+  type: PropTypes.string,
+  onClick: PropTypes.func,
+  isDisabled: PropTypes.bool,
+};
