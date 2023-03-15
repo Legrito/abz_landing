@@ -5,4 +5,4 @@
 <h3>Lighthouse for mobile</h3>
 <img width="300" alt="Знімок екрана 2023-03-15 о 17 27 46" src="https://user-images.githubusercontent.com/67697045/225408603-595a047a-75c8-4d19-a6f1-09557165ab5b.png">
 <h3>Page Speed for desktop</h3>
-<img width="757" alt="Знімок екрана 2023-03-15 о 17 27 46" src="https://user-images.githubusercontent.com/67697045/225410137-f78e3a25-91af-46a7-968c-d6939030bce5.png">
+<img width="300" alt="Знімок екрана 2023-03-15 о 19 39 12" src="https://user-images.githubusercontent.com/67697045/225410324-b0315748-1297-452b-9a8d-960b2f591bec.png">
