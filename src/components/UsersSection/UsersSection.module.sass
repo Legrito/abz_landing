@@ -10,3 +10,13 @@
   @media screen and ( min-width: 769px )
     grid-template-columns: repeat(auto-fill, minmax(282px, 1fr))
     gap: 2.9rem
+
+.card
+  animation: enter 0.8s
+
+@keyframes enter
+  0%
+    transform: translateY(20px)
+
+  100%
+    transform: translate(0, 0)

@@ -94,10 +94,6 @@ const SignUpForm = () => {
     formData.append("photo", file);
   };
 
-  const get = () => {
-    console.log(getUsers().then(data => console.log(data.users)));
-  };
-
   return (
     <form className={styles.form}>
       <InputText
@@ -146,7 +142,6 @@ const SignUpForm = () => {
       >
         {isLoading ? "Loading..." : "Sign Up"}
       </Button>
-      <Button onClick={get}>Get</Button>
     </form>
   );
 };

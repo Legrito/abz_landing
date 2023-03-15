@@ -1,10 +1,12 @@
 import styles from "./Section.module.sass";
 
-const Section = ({ title, children }) => {
+const Section = ({ id, title, children }) => {
   return (
-    <section className={styles.section}>
+    <section id={id} className={styles.section}>
       <div className="section__container">
-        <h2 className={styles.title}>{title}</h2>
+        <h2 className={styles.title} data-item>
+          {title}
+        </h2>
         {children}
       </div>
     </section>

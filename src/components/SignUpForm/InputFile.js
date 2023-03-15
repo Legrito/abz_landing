@@ -7,7 +7,7 @@ const InputFile = ({ file, error, onChange, onBlur }) => {
   //   console.log(file);
   // });
   return (
-    <div className={styles.wrap}>
+    <div className={styles.wrap} data-item>
       <label
         htmlFor="file-upload"
         className={`${styles.upload} ${error ? styles["with-error"] : ""}`}

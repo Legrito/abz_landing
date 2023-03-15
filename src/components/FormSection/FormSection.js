@@ -4,7 +4,7 @@ import SignUpForm from "../SignUpForm/SignUpForm";
 
 const FormSection = () => {
   return (
-    <Section title="Working with POST request">
+    <Section id="sign_up" title="Working with POST request">
       <SignUpForm />
     </Section>
   );

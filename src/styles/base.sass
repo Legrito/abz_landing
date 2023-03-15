@@ -37,3 +37,12 @@ input
 @media (min-width: 769px)
   [class*="__container"]
     padding: 0 6rem
+
+[data-item]
+  transform: translate(0, 20px)
+  opacity: 0
+  transition: all 0.8s
+
+[data-item].active
+  transform: translate(0, 0)
+  opacity: 1

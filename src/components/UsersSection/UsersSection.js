@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { getUsers } from "../../apiMethods/helpers";
 import Button from "../Shared/Button";
 import UserCard from "./UserCard";
@@ -21,23 +21,22 @@ const UsersSection = () => {
   }, []);
 
   const handleClick = () => {
-    setPage(prevPage => prevPage + 1);
-    getUsers(page)
+    getUsers(page + 1)
       .then(data => {
-        setHasNextPage(!!data.links.next_url);
+        setHasNextPage(data.links.next_url);
         setUsers(prevUsers => [...prevUsers, ...data.users]);
       })
-      .catch(error => setError(error.message));
+      .catch(error => setError(error.message))
+      .finally(setPage(prevPage => prevPage + 1));
   };
 
   return (
-    <Section title="Working with GET request">
+    <Section id="users" title="Working with GET request">
       {error && <p>{`${error}. Please reload the page`}</p>}
       <ul className={styles.list}>
         {users.map(user => (
-          <li>
+          <li className={styles.card} key={user.id}>
             <UserCard
-              key={user.id}
               name={user.name}
               email={user.email}
               id={user.id}
@@ -48,7 +47,7 @@ const UsersSection = () => {
         ))}
       </ul>
       {users.length > 0 && (
-        <Button isDisabled={hasNextPage} onClick={handleClick}>
+        <Button isDisabled={!hasNextPage} onClick={handleClick}>
           Show More
         </Button>
       )}

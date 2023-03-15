@@ -3,7 +3,7 @@ import styles from "./InputText.module.sass";
 
 const InputText = ({ value, type, error, placeholder, onChange, onBlur }) => {
   return (
-    <div className={styles.wrap}>
+    <div className={styles.wrap} data-item>
       <input
         className={`${styles.input} ${
           error ? styles["input--with-error"] : ""

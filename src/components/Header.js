@@ -11,10 +11,10 @@ const Header = () => (
       <nav className="actions">
         <ul className={styles.list}>
           <li>
-            <Button>Users</Button>
+            <Button path="#users">Users</Button>
           </li>
           <li>
-            <Button>Sign up</Button>
+            <Button path="#sign_up">Sign up</Button>
           </li>
         </ul>
       </nav>

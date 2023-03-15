@@ -10,6 +10,8 @@
   color: $text
   background-color: $button
   cursor: pointer
+  animation: enter 0.8s
+  transition: all 0.4s
 
   &:disabled
     background-color: $button-disabled
@@ -17,8 +19,16 @@
 
   &:hover, &:focus
     background-color: $button-hover
+    transform: scale(0.98)
 
 .list
   display: flex
   align-items: center
   gap: 1rem
+
+@keyframes enter
+  0%
+    transform: scale(0.8)
+
+  100%
+    transform: scale(1)
