@@ -2,11 +2,11 @@ import axios from "axios";
 
 const BASE_URL = "https://frontend-test-assignment-api.abz.agency/api/v1";
 
-// export const getUsers = async () => {
-//   const response = await fetch(`${BASE_URL}/users`);
+export const getUsers = async () => {
+  const response = await axios(`${BASE_URL}/users`);
 
-//   console.log(response);
-// };
+  return response.data;
+};
 
 export const getPositions = async () => {
   const response = await axios(`${BASE_URL}/positions`);
@@ -14,17 +14,19 @@ export const getPositions = async () => {
 };
 
 export const getToken = async () => {
-  try {
-    const response = await fetch(`${BASE_URL}/token`);
-    const data = await response.json();
-    console.log(data);
-    return data;
-  } catch (error) {
-    return error.message;
-  }
+  const response = await axios(`${BASE_URL}/token`);
+  return response.data;
 };
 
-export const postUser = async () => {
-  const response = await axios(`${BASE_URL}/positions`);
+export const registerUser = async formData => {
+  const { token } = await getToken();
+  console.log(token);
+
+  const response = await axios.post(`${BASE_URL}/users`, formData, {
+    headers: {
+      Token: token,
+    },
+  });
+
   return response.data;
 };

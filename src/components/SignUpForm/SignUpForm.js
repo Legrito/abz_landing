@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../Shared/Button";
 import InputText from "./InputText";
 import styles from "./SignUpForm.module.sass";
 import Positions from "./Positions";
 import InputFile from "./InputFile";
+import { registerUser, getUsers } from "../../apiMethods/helpers";
 import { validateImageSize } from "./helpers";
 
 const EmailRegex =
@@ -84,6 +85,19 @@ const SignUpForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("name", name.value);
+    formData.append("email", email.value);
+    formData.append("phone", phone.value);
+    formData.append("position_id", position.id);
+    formData.append("photo", file);
+
+    console.log(registerUser(formData).then(data => console.log(data)).catch(error => console.log(error.message)));
+  };
+
+  const get = () => {
+    console.log(getUsers().then(data => console.log(data.users)));
   };
 
   return (
@@ -134,6 +148,7 @@ const SignUpForm = () => {
       >
         {isLoading ? "Loading..." : "Sign Up"}
       </Button>
+      <Button onClick={get}>Get</Button>
     </form>
   );
 };
