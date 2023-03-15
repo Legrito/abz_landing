@@ -6,6 +6,7 @@ import FormSection from "./components/FormSection/FormSection";
 
 import "./App.sass";
 import { useEffect } from "react";
+import Footer from "./components/Footer";
 
 function App() {
   useEffect(() => {
@@ -40,6 +41,7 @@ function App() {
         <UsersSection />
         <FormSection />
       </Main>
+      <Footer />
     </div>
   );
 }
