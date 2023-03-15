@@ -12,9 +12,11 @@ const UserCard = ({ name, photo, email, id, phone, position }) => {
       <div className={styles.contacts}>
         <p className="ellipsis">{position}</p>
         <address>
-          <a href={`mailto:${email}`} className="ellipsis">
-            {email}
-          </a>
+          <span data-title={email} className={styles.tooltip}>
+            <a href={`mailto:${email}`} className="ellipsis">
+              {email}
+            </a>
+          </span>
           <a href={`tel:${phone}`} title={phone}>
             {phone}
           </a>

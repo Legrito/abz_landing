@@ -35,3 +35,34 @@ address
   display: flex
   flex-direction: column
   align-items: center
+
+.tooltip
+  display: inline-block
+  position: relative
+  z-index: 1000
+  width: 100%
+  height: 30px
+  display: flex
+  align-items: center
+  justify-content: center
+
+  &::before
+    content: attr(data-title)
+    position: absolute
+    top: 120%
+    left: 50%
+    height: 3.2rem
+    width: max-content
+    padding: 0 10px
+    border-radius: 0.4rem
+    background: rgba(0, 0, 0, 0.87)
+    color: #fff
+    font-size: 1.6rem
+    line-height: 1.625
+    text-align: center
+    opacity: 0
+    transition: all 0.4s
+
+  &:hover
+    &::before
+      opacity: 1
