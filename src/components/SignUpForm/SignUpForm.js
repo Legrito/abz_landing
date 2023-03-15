@@ -13,8 +13,9 @@ const SignUpForm = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [position, setPosition] = useState("Lawyer");
+  const [position, setPosition] = useState({ id: 1, name: "Lawyer" });
   const [file, setFile] = useState("");
+  const [isLoading, setIloading] = useState(false);
 
   const handleFileChange = e => {
     const value = e.target.files[0];
@@ -35,7 +36,7 @@ const SignUpForm = () => {
   };
 
   const handlePositionChange = e => {
-    setPosition(e.target.id);
+    setPosition({ id: e.target.id, name: e.target.value });
   };
 
   const handleChangeTextInput = e => {
@@ -121,6 +122,7 @@ const SignUpForm = () => {
         type="submit"
         onClick={handleSubmit}
         isDisabled={
+          isLoading ||
           name.error ||
           email.error ||
           phone.error ||
@@ -130,7 +132,7 @@ const SignUpForm = () => {
           !phone
         }
       >
-        Sign Up
+        {isLoading ? "Loading..." : "Sign Up"}
       </Button>
     </form>
   );

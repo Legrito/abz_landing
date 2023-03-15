@@ -2,21 +2,30 @@ import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import styles from "./InputRadio.module.sass";
 
-const InputRadio = ({ id, label, onChange, name, isChecked, isDisabled }) => {
+const InputRadio = ({
+  id,
+  label,
+  onChange,
+  name,
+  value,
+  isChecked,
+  isDisabled,
+}) => {
   return (
     <div
       className={`${styles.wrap} ${isDisabled ? styles["is-disabled"] : ""}`}
     >
       <input
-        id={label}
+        id={id}
         className={styles.input}
         type="radio"
         name={name}
+        value={value}
         onChange={onChange}
         checked={isChecked}
         aria-checked={isChecked}
       />
-      <label className={styles.label} htmlFor={label}>
+      <label className={styles.label} htmlFor={id}>
         <span className={styles.button} />
         <p>{label}</p>
       </label>

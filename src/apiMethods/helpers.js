@@ -23,3 +23,8 @@ export const getToken = async () => {
     return error.message;
   }
 };
+
+export const postUser = async () => {
+  const response = await axios(`${BASE_URL}/positions`);
+  return response.data;
+};

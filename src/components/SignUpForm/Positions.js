@@ -12,18 +12,23 @@ const Positions = ({ positionCurrent, onChange }) => {
       .then(data => setPosition(data.positions))
       .catch(error => setError(error.message));
   }, []);
+
   return (
     <Fieldset title="Select your position">
       {error && <p>{`${error}. Please reload the page.`}</p>}
-      {positions.map(position => (
-        <InputRadio
-          key={position.id}
-          name="position"
-          label={position.name}
-          onChange={onChange}
-          isChecked={positionCurrent === position.name}
-        />
-      ))}
+      {positions.map(position => {
+        return (
+          <InputRadio
+            key={position.id}
+            id={position.id}
+            value={position.name}
+            name="position"
+            label={position.name}
+            onChange={onChange}
+            isChecked={positionCurrent.name === position.name}
+          />
+        );
+      })}
     </Fieldset>
   );
 };
