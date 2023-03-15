@@ -3,9 +3,9 @@ import { useEffect } from "react";
 import styles from "./InputFile.module.sass";
 
 const InputFile = ({ file, error, onChange, onBlur }) => {
-  useEffect(() => {
-    console.log(file);
-  });
+  // useEffect(() => {
+  //   console.log(file);
+  // });
   return (
     <div className={styles.wrap}>
       <label

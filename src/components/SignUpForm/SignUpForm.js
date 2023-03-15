@@ -92,8 +92,6 @@ const SignUpForm = () => {
     formData.append("phone", phone.value);
     formData.append("position_id", position.id);
     formData.append("photo", file);
-
-    console.log(registerUser(formData).then(data => console.log(data)).catch(error => console.log(error.message)));
   };
 
   const get = () => {

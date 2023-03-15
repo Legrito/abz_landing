@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getUsers } from "../../apiMethods/helpers";
 import Button from "../Shared/Button";
 import UserCard from "./UserCard";
@@ -8,12 +8,28 @@ import styles from "./UsersSection.module.sass";
 const UsersSection = () => {
   const [users, setUsers] = useState([]);
   const [error, setError] = useState("");
+  const [page, setPage] = useState(1);
+  const [hasNextPage, setHasNextPage] = useState(true);
 
   useEffect(() => {
-    getUsers()
-      .then(data => setUsers(data.users))
+    getUsers(page)
+      .then(data => {
+        setHasNextPage(!!data.links.next_url);
+        setUsers(data.users);
+      })
       .catch(error => setError(error.message));
   }, []);
+
+  const handleClick = () => {
+    setPage(prevPage => prevPage + 1);
+    getUsers(page)
+      .then(data => {
+        setHasNextPage(!!data.links.next_url);
+        setUsers(prevUsers => [...prevUsers, ...data.users]);
+      })
+      .catch(error => setError(error.message));
+  };
+
   return (
     <Section title="Working with GET request">
       {error && <p>{`${error}. Please reload the page`}</p>}
@@ -31,7 +47,11 @@ const UsersSection = () => {
           </li>
         ))}
       </ul>
-      {users.length > 0 && <Button>Show More</Button>}
+      {users.length > 0 && (
+        <Button isDisabled={hasNextPage} onClick={handleClick}>
+          Show More
+        </Button>
+      )}
     </Section>
   );
 };
