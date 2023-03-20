@@ -1,4 +1,4 @@
-<h1>Responsive landing </h1>
+<h1>Responsive landing</h1>
 <h2>🔗 https://abz-landing.netlify.app/</h2>
 <span>&copy; abz.agency specially for the test task</span>
 <h3>Utilized Technologies</h3>
